@@ -1,27 +1,32 @@
-import myLogo from './assets/Logo_ML.png';
+import React, { useState } from 'react'
 import './App.css';
+import Header from './components/Header'
+import { BrowserRouter as Router, Route } from 'react-router-dom'
+import SearchResults from './components/SearchResults.js';
+import ItemDetail from './components/ItemDescription';
+import MainContainer from './components/Main';
 
-function App() {
-    return ( 
-    < div className = "App" >
-        <title>Mercado Libre Argentina</title>
-        <body>
-            <div class="topnav">
-            <div class="row">
-                <div class="col-1">
-                    <img class="LogoMl" alt="Logo" src={myLogo}/>
-                </div>
-                <div class="col-11 text-center">
-                    <input class="search-box" type="text" placeholder="Nunca dejes de buscar"/>
-                    <button class="searchButton" onClick="showSearchResults()"></button>
-                </div>
-            </div>
-                
-                
-                
-            </div>
-        </body>
-    </div>
+const App = () => {
+
+    const [searchString, setSearchString] = useState('')
+    const [items, setItems] = useState([])
+    const [categories, setCategories] = useState([])
+
+    const headerProps = { setSearchString, searchString }
+    const searchResultsProps = { items, setItems, setCategories }
+
+    return (
+        <div class="App">
+            <Router>
+                <Route path="/" render={() => <Header {...headerProps} />} />
+                <MainContainer categories={categories}>
+                    <Route exact path="/items" render={(routerInfo) =>
+                        <SearchResults {...searchResultsProps} location={routerInfo.location}/>} />
+                    <Route exact path="/items/:id" render={({ match }) =>
+                        <ItemDetail id={match.params.id} />} />
+                </MainContainer>
+            </Router>
+        </div>
     );
 }
 

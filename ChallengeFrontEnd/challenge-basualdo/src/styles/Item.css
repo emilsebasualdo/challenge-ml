@@ -1,0 +1,47 @@
+.search-item {
+    background-color: white;
+    padding: 0
+
+}
+
+.search-item-content {        
+    display: flex;
+    align-items: flex-start;
+    border-bottom: 1px solid gray;
+    color: gray;
+
+    
+}
+.thumbnail {
+        width: 180px;
+        height: 180px;
+        border-radius: 4px;
+        object-fit: contain;
+        flex: 0 0 auto;
+        margin: 0;
+    }
+
+    .location {
+        font-size: 12px;
+        color: #999999;
+        text-align: center;
+        flex: 1 1 auto;
+        align-self: stretch;
+    }
+.itemPrice {
+    font-size: 22px;
+    display: flex;
+    align-items: center;
+    
+    
+}
+
+.decimals {
+    font-size: 13px;
+    margin-bottom: 7px;
+}
+.itemInfo {
+    width: 500px;
+    font-size: 18px;
+}
+
